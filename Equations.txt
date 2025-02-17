@@ -1,0 +1,51 @@
+
+Four parameter model is:
+d + (a-d)/(1 + (x/c)^b)  or can be rewritten as:
+max + (min-max)/(1 + (x/EC50)^(Hills_Slope))
+
+SO: to get a sigmoidal curve in the curve fitting app 
+pass in X values as log10(X) and use this equation
+max + (min-max)/(1 + (10^x/EC50)^(Hills_Slope))
+
+to do this use
+X = log10([0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000, 100000, 1000000]) for example in uM
+or
+X = -3:1:6
+
+Try these start parameters for this example if you can't get a curve to converge
+opts.Lower = [1e-05 0 0 -20];
+opts.StartPoint = [1 1 100 0];
+opts.Upper = [10000000 10 120 5];
+
+_____________________________________________________________________________
+NOTES:
+
+_______________________
+for a three parameter model
+emax*x^n/(x^n+ec50^n)  
+_
+___________________________
+for a five parameter model
+F(x) = D+(A-D)/((1+(x/C)^B)^E)
+max + (min-max)/((1 + (x/InflectionPoint)^Hill_Slope^Assymetry))
+
+
+% For a Four Parameter Model: 
+% A = Minimum asymptote. In a bioassay where you have a standard curve,
+% this can be thought of as the response value at 0 standard concentration.
+%
+% B = Hill's slope. The Hill's slope refers to the steepness of the curve.
+% It could either be positive or negative.
+%
+% C = Inflection point. The inflection point is defined as the point on the
+% curve where the curvature changes direction or signs. C is the
+% concentration of analyte where y=(D-A)/2.
+%
+% D = Maximum asymptote. In an bioassay where you have a standard curve,
+% this can be thought of as the response value for infinite standard
+% concentration. 
+% 
+% E = Asymmetry factor. When E=1 we have a symmetrical curve around
+% inflection point and so we have a four-parameters logistic equation.
+
+
