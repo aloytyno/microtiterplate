@@ -2,5 +2,5 @@
 clear
 clc
 
-% Open the main script
+% Open the main script 
 edit Microtiter_Plate_Onefile.mlx
